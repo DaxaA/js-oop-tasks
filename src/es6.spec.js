@@ -39,9 +39,24 @@ describe('es6', () => {
     describe('#Dictionary', () => {
         it('экземпляр класса создается', () => {
             const dic = new core.Dictionary();
-
-            // TODO
             assert.strictEqual(!!dic, true);
+        });
+
+        it('корректные данные вставляются и получаются', () => {
+            const dic = new core.Dictionary();
+            dic.set("dom", "house");
+            dic.set("koshka", "cat");
+            assert.strictEqual(dic.get("dom"), "house");
+            assert.strictEqual(dic.get("koshka"), "cat");
+            assert.strictEqual(dic.get("sobaka"), undefined);
+        });
+
+        it('проверка некорректных данных', () => {
+            const dic = new core.Dictionary();
+            assert.strictEqual(dic.set("dom", null), undefined);
+            assert.strictEqual(dic.set("koshka", undefined), undefined);
+            assert.strictEqual(dic.set(undefined, "meow"), undefined);
+            assert.strictEqual(dic.set(null, "wow"), undefined);
         });
     });
 });
